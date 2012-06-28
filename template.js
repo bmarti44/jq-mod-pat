@@ -1,9 +1,9 @@
 /*jslint devel: false, browser: true, maxerr: 50, indent: 4, white: true*/
-/*global GFTabs: false, GFFeeds: false, GF_STATICS: false, clsExtensions: false, $: false, GF_PATH: false, GF_ID: false, gfTools: false, log: false, SILoader: false, jQuery: false, GFState: false, Mustache: false, console: false, controller: false, clearInterval: false, clearTimeout: false, document: false, event: false, frames: false, history: false, Image: false, location: false, name: false, navigator: false, Option: false, parent: false, screen: false, setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false */
+/*global $: false, log: false, jQuery: false, Mustache: false, console: false, clearInterval: false, clearTimeout: false, document: false, event: false, frames: false, history: false, Image: false, location: false, name: false, navigator: false, Option: false, parent: false, screen: false, setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false */
 
 /**
  *	@description
- *		This file will be a template for other files for the gameflash project
+ *		This file will be a template for other a module pattern
  *	@author
  *		Brian Martin
  *	@version
@@ -11,21 +11,20 @@
  *	@namespace
  *		GFTemplate
  */
-(function ($) {
+(function ($, module) {
 	'use strict';
 	/**
 	 * GTTemplate Class
 	 */
-	function GFTemplate() {
+	function Template() {
 		
-		if (!(this instanceof (GFTemplate))) {
-			return new GFTemplate();
+		if (!(this instanceof (Template))) {
+			return new Template();
 		}
 	
 		var self = this,
 			initialize,
-			data = controller.loader.getData(),
-			template = $('#template').html();
+			mustacheTemplate;
 		
 		/**
 		 *	@description
@@ -38,6 +37,9 @@
 		 */
 		initialize = function () {
 			
+			module.template = {};
+			mustacheTemplate = $('#template').html();
+			
 		};
 		
 		/**
@@ -48,7 +50,7 @@
 		 *	@return
 		 *		{{undefined}} 
 		 */
-		this.update = function () {
+		module.template.update = module.template.update || function () {
 			
 		};
 		
@@ -61,13 +63,14 @@
 		 *	@return
 		 *		{{undefined}}
 		 */
-		this.write = function () {
+		module.template.write = module.template.write || function () {
 			
 		};
 		
 		try {
 			
 			initialize();
+			return module;
 			
 		} catch (exception) {
 			
@@ -87,7 +90,7 @@
 				
 			if (!window.gameflash.clsTemplate) {
 							
-				window.gameflash.clsTemplate = new GFTemplate();
+				window.gameflash.clsTemplate = new Template();
 				
 			}
 			
@@ -101,4 +104,4 @@
 			
 	});
 
-}(jQuery));
+}(jQuery, window.extend = window.extend || {}));
