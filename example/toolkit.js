@@ -74,8 +74,8 @@
 					console.log(stack[stack.length - (stack.length - 2)]);
 				}
 			
-			} catch (exception) { 
-								
+			} catch (exception) {				
+				
 			}
 			
 		}
