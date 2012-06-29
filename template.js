@@ -30,7 +30,9 @@
 		
 		// define all your variables here!
 		var initialize,
-			mustacheTemplate;
+			data,
+			template,
+			id;
 		
 		// never make a varialbe pulbic, make a public getter or setter function!
 		
@@ -45,33 +47,54 @@
 		 */
 		initialize = function () {
 			
+			id = '#template-out-div';
+			data = {};
 			module.template = {};
-			mustacheTemplate = $('#template').html(); // keep your HTML and JavaScript separate! Completely!
+			template = $('#template').html(); // keep your HTML and JavaScript separate! Completely!
 			
 		};
 		
 		/**
 		 *	@description
-		 *		Public method that inherits can inherit from another class
+		 *		Public method that writes out the mustache template using the current data model
 		 *	@public
 		 *	@method
 		 *	@return
 		 *		{{undefined}} 
 		 */
-		module.template.publicMethodInherit = module.template.publicMethodInherit || function () {
+		module.template.write = function () {
+			
+			$(id).html(Mustache.to_html(template, data));
 			
 		};
 		
 		/**
 		 *	@description
-		 *		Public method that cannot be inherited from another class
+		 *		Public method used to reset the data model
 		 *	@public
 		 *	@method
 		 *	@static
 		 *	@return
 		 *		{{undefined}}
 		 */
-		module.template.publicMethodCannotInherit = function () {
+		module.template.setDataModel = function (incomingData) {
+			
+			data = incomingData;
+			
+		};
+		
+		/**
+		 *	@description
+		 *		Public method used to get the current data model
+		 *	@public
+		 *	@method
+		 *	@static
+		 *	@return
+		 *		{{undefined}}
+		 */
+		module.template.getDataModel = function () {
+			
+			return data;
 			
 		};
 		
