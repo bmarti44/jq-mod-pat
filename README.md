@@ -23,16 +23,19 @@ template.js
 Examples
 --------
 > To create a private function, first declare it with all your other variables. Then:
+
 		myPrivateFunction = function () {
 			// do some stuff, privately
 		}; // don't forget the semicolon!
 
 > To create a public function that overwrites inheritance from other modules:
+
 		module.currentNameSpace.myFunctionCannotBeOverwritten = function () {
 			// do some stuff, publicly
 		}; // don't forget the semicolon!
 		
 > To create a public function that can be overwritten by other modules: 
+
 		module.currentNameSpace.maybeOverwriteMe = module.currentNameSpace.maybeOverwriteMe || function () {
 			// do some stuff, publicly (maybe)
 		}; // don't forget the semicolon!
