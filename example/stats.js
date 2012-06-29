@@ -52,7 +52,7 @@
 			template = $('mustache-stats').html(); // keep your HTML and JavaScript separate! Completely!
 			
 		};
-		
+		try {
 		// define the stats namespace
 		module.stats = {};
 		
@@ -100,7 +100,7 @@
 			
 		};
 		
-		try {
+		
 			
 			initialize();
 			return module;
@@ -108,7 +108,7 @@
 		} catch (exception) {
 			// don't use console.log()! this will break browser's that don't have a console.
 			// thanks Paul Irish!
-			log(exception);
+			console.log(exception);
 			
 		}
 		
