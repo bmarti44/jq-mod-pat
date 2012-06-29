@@ -49,10 +49,11 @@
 			
 			id = '#template-out-div';
 			data = {};
-			module.template = {};
 			template = $('#template').html(); // keep your HTML and JavaScript separate! Completely!
 			
 		};
+		
+		module.item = {};
 		
 		/**
 		 *	@description
@@ -122,8 +123,7 @@
 		try {			
 				
 			clsItem = new Item();
-			console.log(module);
-								
+			
 		} catch (exception) {
 			// don't use console.log()! This will break browser's that don't have console.
 			// thanks Paul Irish!
@@ -132,4 +132,4 @@
 			
 	});
 		
-}(jQuery, window.extend = window.extend || {}, Mustache));
+}(jQuery, window.EXTEND = window.EXTEND || {}, Mustache));

@@ -45,9 +45,12 @@
 		 */
 		initialize = function () {
 			
+			module.controller = {};
 			$(document).trigger('compile');
 			
 		};
+		
+		module.controller = {};
 		
 		try {
 			
@@ -86,4 +89,4 @@
 			
 	});
 		
-}(jQuery, window.extend = window.extend || {}, Mustache));
+}(jQuery, window.EXTEND = window.EXTEND || {}, Mustache));
