@@ -1,34 +1,42 @@
 /*jslint devel: false, browser: true, maxerr: 50, indent: 4, white: true*/
 /*global $: false, log: false, jQuery: false, Mustache: false, console: false, clearInterval: false, clearTimeout: false, document: false, event: false, frames: false, history: false, Image: false, location: false, name: false, navigator: false, Option: false, parent: false, screen: false, setInterval: false, setTimeout: false, window: false, XMLHttpRequest: false */
 
+// only use /* */ for function header commenting. NEVER use it to comment out code!!!!!
+// thanks Douglas Crockford!
+
 /**
  *	@description
  *		This file will be a template for other a module pattern
  *	@author
  *		Brian Martin
  *	@version
- *		0.0.1
+ *		1.0.0
  *	@namespace
  *		GFTemplate
  */
-(function ($, module) {
-	'use strict';
-	/**
-	 * GTTemplate Class
-	 */
+(function ($, module, Mustache) {
+	'use strict'; // always put use strict at the top of the closure
+	
+	var clsTemplate;
+	
+	// Template Class
+	
 	function Template() {
-		
+		// if someone tries to call this without using the new operator, it will force using the new operator
+		// thanks john resig!
 		if (!(this instanceof (Template))) {
 			return new Template();
 		}
-	
-		var self = this,
-			initialize,
+		
+		// define all your variables here!
+		var initialize,
 			mustacheTemplate;
+		
+		// never make a varialbe pulbic, make a public getter or setter function!
 		
 		/**
 		 *	@description
-		 *		Constructor function for GFTemplate
+		 *		Constructor function for Template object. Set all your variables here!
 		 *	@private
 		 *	@method
 		 *	@constructor
@@ -38,32 +46,32 @@
 		initialize = function () {
 			
 			module.template = {};
-			mustacheTemplate = $('#template').html();
+			mustacheTemplate = $('#template').html(); // keep your HTML and JavaScript separate! Completely!
 			
 		};
 		
 		/**
 		 *	@description
-		 *		Public method that can be overwritten
+		 *		Public method that inherits can inherit from another class
 		 *	@public
 		 *	@method
 		 *	@return
 		 *		{{undefined}} 
 		 */
-		module.template.update = module.template.update || function () {
+		module.template.publicMethodInherit = module.template.publicMethodInherit || function () {
 			
 		};
 		
 		/**
 		 *	@description
-		 *		Public method that cannot be overwritten
-		 *	@private
+		 *		Public method that cannot be inherited from another class
+		 *	@public
 		 *	@method
 		 *	@static
 		 *	@return
 		 *		{{undefined}}
 		 */
-		module.template.write = module.template.write || function () {
+		module.template.publicMethodCannotInherit = function () {
 			
 		};
 		
@@ -73,8 +81,9 @@
 			return module;
 			
 		} catch (exception) {
-			
-			console.log(exception);
+			// don't use console.log()! this will break browser's that don't have a console.
+			// thanks Paul Irish!
+			log(exception);
 			
 		}
 		
@@ -82,26 +91,25 @@
 	
 	/**
 	 *	@description
-	 *		Driver for the GFTemplate class
+	 *		Driver for the Template class. Always put this after your class definition!
+	 *		This sets a custom event listener on the document.
 	 */
-	$(document).on('gameflash', function (event) {
+	$(document).on('compile', function (event) {
+		
+		try {
 				
-		try {	
+			if (!module.template) {
 				
-			if (!window.gameflash.clsTemplate) {
-							
-				window.gameflash.clsTemplate = new Template();
+				clsTemplate = new Template();
 				
 			}
-			
-			window.gameflash.clsTemplate.update();
-		
+					
 		} catch (exception) {
-			
-			console.log(exception);
-			
+			// don't use console.log()! This will break browser's that don't have console.
+			// thanks Paul Irish!
+			log(exception);			
 		}
 			
 	});
-
-}(jQuery, window.extend = window.extend || {}));
+		
+}(jQuery, window.extend = window.extend || {}, Mustache));
