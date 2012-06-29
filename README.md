@@ -1,10 +1,9 @@
 jQuery Custom Events + Module Pattern + Mustache
 ================================================
-> Brian Martin
-> https://twitter.com/bmarti44
-> Public Domain
-
-> 2012-06-29
+> * Brian Martin
+> * https://twitter.com/bmarti44
+> * Public Domain
+> * 2012-06-29
 
 What is it?
 -----------
