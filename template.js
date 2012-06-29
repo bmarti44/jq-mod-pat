@@ -49,7 +49,6 @@
 			
 			id = '#template-out-div';
 			data = {};
-			module.template = {};
 			template = $('#template').html(); // keep your HTML and JavaScript separate! Completely!
 			
 		};
@@ -138,4 +137,4 @@
 			
 	});
 		
-}(jQuery, window.extend = window.extend || {}, Mustache));
+}(jQuery, window.EXTEND = window.EXTEND || {}, Mustache));
