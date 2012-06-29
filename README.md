@@ -1,5 +1,5 @@
-jQuery Custom Events + Module Pattern + Inheritance + Mustache
-==============================================================
+jQuery Custom Events + Module Pattern + Mustache
+================================================
 > Brian Martin
 > https://twitter.com/bmarti44
 > Public Domain
