@@ -54,6 +54,9 @@
 			
 		};
 		
+		// define the template namespace
+		module.template = {};
+		
 		/**
 		 *	@description
 		 *		Public method that writes out the mustache template using the current data model

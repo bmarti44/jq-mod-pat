@@ -50,6 +50,7 @@
 			
 		};
 		
+		// define the controller namespace
 		module.controller = {};
 		
 		try {

@@ -53,6 +53,7 @@
 			
 		};
 		
+		// define the item namespace
 		module.item = {};
 		
 		/**
