@@ -116,7 +116,7 @@
 	
 	/**
 	 *	@description
-	 *		Driver for the Template class. Always put this after your class definition!
+	 *		Driver for the Stats class. Always put this after your class definition!
 	 *		This sets a custom event listener on the document.
 	 */
 	$(document).on('compile', function (event) {
