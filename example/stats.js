@@ -52,7 +52,7 @@
 			template = $('mustache-stats').html(); // keep your HTML and JavaScript separate! Completely!
 			
 		};
-		try {
+		
 		// define the stats namespace
 		module.stats = {};
 		
@@ -100,7 +100,7 @@
 			
 		};
 		
-		
+		try {
 			
 			initialize();
 			return module;
