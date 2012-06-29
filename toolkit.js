@@ -49,14 +49,8 @@
 				var errorLog,
 					stack = [];	
 				// if your browser supports stack tracing, then 
-				errorLog = new Error();		
+				errorLog = new Error();
 				
-				if (this.history instanceof Array) {
-					this.history.push(arguments);
-				} else {
-					this.history = [];
-				}
-		
 				console.log(Array.prototype.slice.call(arguments));
 				
 				if (typeof(errorLog.stack) !== 'undefined') {
@@ -74,8 +68,8 @@
 					console.log(stack[stack.length - (stack.length - 2)]);
 				}
 			
-			} catch (exception) { 
-								
+			} catch (exception) {				
+				
 			}
 			
 		}
