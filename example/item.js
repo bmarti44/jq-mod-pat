@@ -113,11 +113,13 @@
 					
 				todos = $.jStorage.get('todos', {});
 				
-				if (!$.isArray(todos.items)) {
-					todos.items = [];
+				if (!$.isArray(todos.items) || todos.items.length === 0) {
+					$('#main').hide();
+					return false;
 				}
 				
 				generateModal(todos);
+				
 				module.item.write();
 				
 				if ($('#todo-list li').length) {
@@ -168,6 +170,34 @@
 			
 		};
 		
+		module.item.remove = function (event) {
+			var todos,
+				text,
+				index;
+			
+			if ($.jStorage.storageAvailable()) {
+					
+				todos = $.jStorage.get('todos', {});
+				
+				if (!$.isArray(todos.items)) {
+					todos.items = [];
+				}
+				
+				index = $('#todo-list .destroy').index(event.target);
+				
+				todos.items.remove(index, index);
+				
+				$.jStorage.set('todos', todos);
+				
+				module.item.update();
+				
+			} else {
+				log('No space storage available!');
+				return false;
+			}
+			
+		};
+		
 		try {
 			
 			initialize();
@@ -193,6 +223,7 @@
 			clsItem = new Item();
 			// set some event listeners for this state
 			$('#new-todo').on('keypress', module.item.insert);
+			$('#todo-list').on('click', '.destroy', module.item.remove);
 			
 		} catch (exception) {
 			// don't use console.log()! This will break browser's that don't have console.
