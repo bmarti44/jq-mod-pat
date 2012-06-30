@@ -30,6 +30,7 @@
 		
 		// define all your variables here!
 		var initialize,
+			generateModal,
 			data,
 			template,
 			id;
@@ -53,6 +54,10 @@
 			
 		};
 		
+		generateModal = function (text) {
+			data.title = text;
+		};
+		
 		// define the item namespace
 		module.item = {};
 		
@@ -66,7 +71,7 @@
 		 */
 		module.item.write = function () {
 			
-			$(id).html(Mustache.to_html(template, data));
+			$(id).html(Mustache.render(template, data));
 			
 		};
 		
@@ -100,6 +105,39 @@
 			
 		};
 		
+		module.item.insert = function (event) {
+			var $txtTodo = $('#new-todo'),
+				text,
+				todos;
+			
+			if (event.keyCode === 13) {
+				text = $txtTodo.val();
+				
+				if ($.jStorage.storageAvailable()) {
+					
+					todos = $.jStorage.get('todos', []);
+					
+					todos.push({
+						'title': text,
+						'done': false
+					});
+					
+					$.jStorage.set('todos', todos);
+					
+				} else {
+					log('No space storage available!');
+					return false;
+				}
+				
+				$txtTodo.val('');
+				generateModal(text);
+				module.item.write();
+				$('#main').show();
+				
+			}
+			
+		};
+		
 		try {
 			
 			initialize();
@@ -123,6 +161,8 @@
 		try {			
 				
 			clsItem = new Item();
+			// set some event listeners for this state
+			$('#new-todo').on('keypress', module.item.insert);
 			
 		} catch (exception) {
 			// don't use console.log()! This will break browser's that don't have console.
@@ -132,5 +172,5 @@
 	}
 	
 	$(document).on('compile', onCompile);
-		
+	
 }(jQuery, window.EXTEND = window.EXTEND || {}, Mustache));
