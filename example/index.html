@@ -10,8 +10,8 @@
 			{{#items}}
 			<li>
 				<div class="view">
-			      <input class="toggle" type="checkbox" {{#checked}}checked="checked"{{/checked}}/>
-			      <label>{{title}}</label>
+			      <input class="toggle" type="checkbox" {{#done}}checked="checked"{{/done}}/>
+			      <label>{{title}} {{done}}</label>
 			      <a class="destroy"></a>
 			    </div>
 			    <input class="edit" type="text" value="{{title}}" />

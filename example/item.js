@@ -198,6 +198,32 @@
 			
 		};
 		
+		module.item.toggleAll = function (event) {
+			var todos,
+				i;
+					
+			todos = $.jStorage.get('todos', {});
+			
+			if ($(event.target).is(':checked')) {
+							
+				for (i = 0; i < todos.items.length; i += 1) {
+					todos.items[i].done = true;
+				}
+				
+			} else {
+				
+				for (i = 0; i < todos.items.length; i += 1) {
+					todos.items[i].done = false;
+				}
+				
+			}
+			
+			$.jStorage.set('todos', todos);
+			
+			module.item.update();
+			
+		};
+		
 		try {
 			
 			initialize();
@@ -224,6 +250,7 @@
 			// set some event listeners for this state
 			$('#new-todo').on('keypress', module.item.insert);
 			$('#todo-list').on('click', '.destroy', module.item.remove);
+			$('#toggle-all').on('click', module.item.toggleAll);
 			
 		} catch (exception) {
 			// don't use console.log()! This will break browser's that don't have console.
