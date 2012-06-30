@@ -190,6 +190,7 @@
 				$.jStorage.set('todos', todos);
 				
 				module.item.update();
+				module.stats.update();
 				
 			} else {
 				log('No space storage available!');

@@ -6,28 +6,6 @@
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script type="text/javascript" src="jstorage.js"></script>
 		<script type="text/javascript" src="mustache.js"></script>
-		<script id="mustache-item" type="text/mustache">
-			{{#items}}
-			<li {{#done}}class="done"{{/done}}>
-				<div class="view">
-			      <input class="toggle" type="checkbox" {{#done}}checked="checked"{{/done}}/>
-			      <label>{{title}}</label>
-			      <a class="destroy"></a>
-			    </div>
-			    <input class="edit" type="text" value="{{title}}" />
-		    </li>
-		    {{/items}}
-		</script>
-		<script id="mustache-stats" type="text/mustache">
-			{{#completed}}
-		    <a id="clear-completed">Clear {{totalCompleted}} completed item{{completedPlural}}</a>
-		    {{/completed}}
-		    <div class="todo-count"><b>{{totalRemaining}}</b> item{{remainingPlural}} left</div>
-		</script>
-		<script type="text/javascript" src="toolkit.js"></script>
-		<script type="text/javascript" src="controller.js"></script>
-		<script type="text/javascript" src="item.js"></script>
-		<script type="text/javascript" src="stats.js"></script>
 	</head>
 	<body>
 		 
@@ -62,6 +40,27 @@
 			<br />Rewritten by: <a href="http://addyosmani.github.com/todomvc">TodoMVC</a>.
 			<br />Re-Rewritten by: <a href="https://github.com/bmarti44/jq-mod-pat">jQuery Module Pattern</a>.
 		</div>
-			
+		<script id="mustache-item" type="text/mustache">
+			{{#items}}
+			<li {{#done}}class="done"{{/done}}>
+				<div class="view">
+			      <input class="toggle" type="checkbox" {{#done}}checked="checked"{{/done}}/>
+			      <label>{{title}}</label>
+			      <a class="destroy"></a>
+			    </div>
+			    <input class="edit" type="text" value="{{title}}" />
+		    </li>
+		    {{/items}}
+		</script>
+		<script id="mustache-stats" type="text/mustache">
+			{{#completed}}
+		    <a id="clear-completed">Clear {{totalCompleted}} completed item{{completedPlural}}</a>
+		    {{/completed}}
+		    <div class="todo-count"><b>{{totalRemaining}}</b> item{{remainingPlural}} left</div>
+		</script>
+		<script type="text/javascript" src="toolkit.js"></script>
+		<script type="text/javascript" src="controller.js"></script>
+		<script type="text/javascript" src="item.js"></script>
+		<script type="text/javascript" src="stats.js"></script>
 	</body>
 </html>
