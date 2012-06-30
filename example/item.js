@@ -253,15 +253,16 @@
 			var index,
 				element;
 			
-			if (!$(event.target).hasClass('view')) {
-				element = $(event.target).parents('.view:first');
+			if (!$(event.target).is('li')) {
+				element = $(event.target).parents('li:first');
 			} else {
 				element = event.target;
 			}
 			
-			index = $('#todo-list .view').index(element);
-			$(element).hide();
+			index = $('#todo-list li').index(element);
+			$(element).find('.view').hide();
 			$('#todo-list .edit:eq(' + index + ')').show();
+			$('#todo-list .edit:eq(' + index + ')').focus();
 			
 		};
 		
@@ -269,7 +270,7 @@
 			var todos,
 				index;
 			
-			if (event.keyCode === 13) {
+			if (event.keyCode === 13 || event.type === 'focusout') {
 				todos = $.jStorage.get('todos', {});
 				index = $('#todo-list .edit').index(event.target);
 				
@@ -312,6 +313,7 @@
 			$('#todo-list').on('click', '.toggle', module.item.toggle);
 			$('#todo-list').on('dblclick', '.view', module.item.edit);
 			$('#todo-list').on('keypress', '.edit', module.item.save);
+			$('#todo-list').on('blur', '.edit', module.item.save);
 			
 		} catch (exception) {
 			// don't use console.log()! This will break browser's that don't have console.
