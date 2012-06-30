@@ -50,7 +50,8 @@
 			
 			id = 'footer';
 			data = {};
-			template = $('mustache-stats').html(); // keep your HTML and JavaScript separate! Completely!
+			template = $('#mustache-stats').html(); // keep your HTML and JavaScript separate! Completely!
+			module.stats.update();
 			
 		};
 		
@@ -105,12 +106,99 @@
 			
 		};
 		
+		module.stats.update = function () {
+			var totalTodos,
+				completedTodos,
+				remainingTodos;
+				
+			totalTodos = module.stats.total();
+			completedTodos = module.stats.completed();
+			remainingTodos = totalTodos - completedTodos;
+			
+			if (totalTodos > 0) {
+				$('footer').show();
+			} else {
+				$('footer').hide();
+				return false;
+			}
+			
+			data = {
+				'totalRemaining': remainingTodos,
+				'remainingPlural': remainingTodos > 1 ? 's' : ''
+			};
+			
+			if (completedTodos !== 0) {
+				data.completed = {
+					'totalCompleted': completedTodos,
+					'completedPlural': completedTodos > 1 ? 's' : ''
+				};
+			} else {
+				delete data.completed;
+			}
+			
+			module.stats.write();
+		};
+		
 		module.stats.insert = function (event) {
 			
 			if (event.keyCode === 13) {
-				console.log($.jStorage.get('todos', {}));
+				
+				module.stats.update();
+				
 			}
 			
+		};
+		
+		module.stats.completed = function () {
+			var todos = $.jStorage.get('todos', {}),
+				i,
+				count = 0;
+			
+			if ($.isArray(todos.items)) {
+				
+				for (i = 0; i < todos.items.length; i += 1) {
+					
+					if (todos.items[i].done) {
+						count += 1;
+					}
+					
+				}
+				
+			}
+			
+			return count;
+			
+		};
+		
+		module.stats.total = function () {
+			var todos = $.jStorage.get('todos', {});
+			
+			if ($.isArray(todos.items)) {
+				return todos.items.length;
+			}
+			
+			return 0;
+			
+		};
+		
+		module.stats.clearCompleted = function (event) {
+			var todos,
+				i;
+					
+			todos = $.jStorage.get('todos', {});
+							
+			for (i = 0; i < todos.items.length; i += 1) {
+				
+				if (todos.items[i].done === true) {
+					todos.items.remove(i, i);
+				}
+				
+			}
+			
+			$.jStorage.set('todos', todos);
+			
+			module.item.update();
+			module.stats.update();
 		};
 		
 		try {
@@ -139,6 +227,8 @@
 				
 				clsStats = new Stats();
 				$('#new-todo').on('keypress', module.stats.insert);
+				$('footer').on('click', '#clear-completed', module.stats.clearCompleted);
+				
 			}
 					
 		} catch (exception) {

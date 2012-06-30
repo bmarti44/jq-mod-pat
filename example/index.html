@@ -8,7 +8,7 @@
 		<script type="text/javascript" src="mustache.js"></script>
 		<script id="mustache-item" type="text/mustache">
 			{{#items}}
-			<li>
+			<li {{#done}}class="done"{{/done}}>
 				<div class="view">
 			      <input class="toggle" type="checkbox" {{#done}}checked="checked"{{/done}}/>
 			      <label>{{title}}</label>
@@ -19,10 +19,10 @@
 		    {{/items}}
 		</script>
 		<script id="mustache-stats" type="text/mustache">
-			{{#done}}
-		      <a id="clear-completed">Clear {{totalCompleted}} completed item{{showPlural}}</a>
-		    {{/done}}
-		    <div class="todo-count"><b>{{remaining}}</b> item{{remainingPlural}} left</div>
+			{{#completed}}
+		    <a id="clear-completed">Clear {{totalCompleted}} completed item{{completedPlural}}</a>
+		    {{/completed}}
+		    <div class="todo-count"><b>{{totalRemaining}}</b> item{{remainingPlural}} left</div>
 		</script>
 		<script type="text/javascript" src="toolkit.js"></script>
 		<script type="text/javascript" src="controller.js"></script>

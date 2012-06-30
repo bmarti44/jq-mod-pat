@@ -221,6 +221,7 @@
 			$.jStorage.set('todos', todos);
 			
 			module.item.update();
+			module.stats.update();
 			
 		};
 		
@@ -244,6 +245,7 @@
 			$.jStorage.set('todos', todos);
 			
 			module.item.update();
+			module.stats.update();
 		};
 		
 		try {
