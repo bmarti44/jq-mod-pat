@@ -105,7 +105,11 @@
 			
 		};
 		
-		module.stats.insert = function () {
+		module.stats.insert = function (event) {
+			
+			if (event.keyCode === 13) {
+				console.log($.jStorage.get('todos', {}));
+			}
 			
 		};
 		
@@ -117,7 +121,7 @@
 		} catch (exception) {
 			// don't use console.log()! this will break browser's that don't have a console.
 			// thanks Paul Irish!
-			console.log(exception);
+			log(exception);
 			
 		}
 		
@@ -134,7 +138,7 @@
 			if (!module.stats) {
 				
 				clsStats = new Stats();
-				
+				$('#new-todo').on('keypress', module.stats.insert);
 			}
 					
 		} catch (exception) {

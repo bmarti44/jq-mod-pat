@@ -54,8 +54,8 @@
 			
 		};
 		
-		generateModal = function (text) {
-			data.title = text;
+		generateModal = function (todos) {
+			data = todos;
 		};
 		
 		// define the item namespace
@@ -115,9 +115,13 @@
 				
 				if ($.jStorage.storageAvailable()) {
 					
-					todos = $.jStorage.get('todos', []);
+					todos = $.jStorage.get('todos', {});
 					
-					todos.push({
+					if (!$.isArray(todos.items)) {
+						todos.items = [];
+					}
+					
+					todos.items.push({
 						'title': text,
 						'done': false
 					});
@@ -128,9 +132,9 @@
 					log('No space storage available!');
 					return false;
 				}
-				
+				console.log(todos);
 				$txtTodo.val('');
-				generateModal(text);
+				generateModal(todos);
 				module.item.write();
 				$('#main').show();
 				
