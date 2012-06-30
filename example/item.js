@@ -51,6 +51,7 @@
 			id = '#todo-list';
 			data = {};
 			template = $('#mustache-item').html(); // keep your HTML and JavaScript separate! Completely!
+			module.item.update();
 			
 		};
 		
@@ -105,6 +106,31 @@
 			
 		};
 		
+		module.item.update = function () {
+			var todos;
+			
+			if ($.jStorage.storageAvailable()) {
+					
+				todos = $.jStorage.get('todos', {});
+				
+				if (!$.isArray(todos.items)) {
+					todos.items = [];
+				}
+				
+				generateModal(todos);
+				module.item.write();
+				
+				if ($('#todo-list li').length) {
+					$('#main').show();
+				}
+				
+			} else {
+				log('No space storage available!');
+				return false;
+			}
+				
+		};
+		
 		module.item.insert = function (event) {
 			var $txtTodo = $('#new-todo'),
 				text,
@@ -132,7 +158,7 @@
 					log('No space storage available!');
 					return false;
 				}
-				console.log(todos);
+				
 				$txtTodo.val('');
 				generateModal(todos);
 				module.item.write();
