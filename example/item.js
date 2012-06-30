@@ -249,11 +249,17 @@
 		};
 		
 		module.item.edit = function (event) {
-			var index;
+			var index,
+				element;
 			
-			index = $('#todo-list .view').index(event.target);
+			if (!$(event.target).hasClass('view')) {
+				element = $(event.target).parents('.view:first');
+			} else {
+				element = event.target;
+			}
 			
-			$(event.target).hide();
+			index = $('#todo-list .view').index(element);
+			$(element).hide();
 			$('#todo-list .edit:eq(' + index + ')').show();
 			
 		};
@@ -267,6 +273,8 @@
 				index = $('#todo-list .edit').index(event.target);
 				
 				todos.items[index].title = $(event.target).val();
+				$.jStorage.set('todos', todos);
+				
 				module.item.update();
 				module.stats.update();
 			}
