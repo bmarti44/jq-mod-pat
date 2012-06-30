@@ -224,6 +224,28 @@
 			
 		};
 		
+		module.item.toggle = function (event) {
+			var todos,
+				index;
+					
+			todos = $.jStorage.get('todos', {});
+			index = $('#todo-list .toggle').index(event.target);
+			
+			if ($(event.target).is(':checked')) {					
+				
+				todos.items[index].done = true;				
+				
+			} else {
+				
+				todos.items[index].done = false;
+				
+			}
+			
+			$.jStorage.set('todos', todos);
+			
+			module.item.update();
+		};
+		
 		try {
 			
 			initialize();
@@ -251,6 +273,7 @@
 			$('#new-todo').on('keypress', module.item.insert);
 			$('#todo-list').on('click', '.destroy', module.item.remove);
 			$('#toggle-all').on('click', module.item.toggleAll);
+			$('#todo-list').on('click', '.toggle', module.item.toggle);
 			
 		} catch (exception) {
 			// don't use console.log()! This will break browser's that don't have console.
