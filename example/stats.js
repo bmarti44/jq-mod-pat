@@ -30,6 +30,7 @@
 		
 		// define all your variables here!
 		var initialize,
+			generateModal,
 			data,
 			template,
 			id;
@@ -50,6 +51,10 @@
 			id = 'footer';
 			data = {};
 			template = $('mustache-stats').html(); // keep your HTML and JavaScript separate! Completely!
+			
+		};
+		
+		generateModal = function (text) {
 			
 		};
 		
@@ -97,6 +102,10 @@
 		module.stats.getDataModel = function () {
 			
 			return data;
+			
+		};
+		
+		module.stats.insert = function () {
 			
 		};
 		
