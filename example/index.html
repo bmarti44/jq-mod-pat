@@ -7,12 +7,14 @@
 		<script type="text/javascript" src="jstorage.js"></script>
 		<script type="text/javascript" src="mustache.js"></script>
 		<script id="mustache-item" type="text/mustache">
-			<div class="view">
-		      <input class="toggle" type="checkbox" {{#checked}}checked="checked"{{/checked}}/>
-		      <label>{{title}}</label>
-		      <a class="destroy"></a>
-		    </div>
-		    <input class="edit" type="text" value="{{title}}" />	    
+			<li>
+				<div class="view">
+			      <input class="toggle" type="checkbox" {{#checked}}checked="checked"{{/checked}}/>
+			      <label>{{title}}</label>
+			      <a class="destroy"></a>
+			    </div>
+			    <input class="edit" type="text" value="{{title}}" />
+		    </li>    
 		</script>
 		<script id="mustache-stats" type="text/mustache">
 			{{#done}}

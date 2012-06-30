@@ -47,9 +47,9 @@
 		 */
 		initialize = function () {
 			
-			id = '#template-out-div';
+			id = '#todo-list';
 			data = {};
-			template = $('#template').html(); // keep your HTML and JavaScript separate! Completely!
+			template = $('#mustache-item').html(); // keep your HTML and JavaScript separate! Completely!
 			
 		};
 		
@@ -119,8 +119,7 @@
 	 *		Driver for the Template class. Always put this after your class definition!
 	 *		This sets a custom event listener on the document.
 	 */
-	$(document).on('compile', function (event) {
-		
+	function onCompile (event) {
 		try {			
 				
 			clsItem = new Item();
@@ -130,7 +129,8 @@
 			// thanks Paul Irish!
 			log(exception);
 		}
-			
-	});
+	}
+	
+	$(document).on('compile', onCompile);
 		
 }(jQuery, window.EXTEND = window.EXTEND || {}, Mustache));

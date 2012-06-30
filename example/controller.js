@@ -53,6 +53,22 @@
 		// define the controller namespace
 		module.controller = {};
 		
+		module.controller.onReady = function (event) {
+			try {
+				
+				if (!module.controller) {
+					
+					clsController = new Controller();
+					
+				}
+						
+			} catch (exception) {
+				// don't use console.log()! This will break browser's that don't have console.
+				// thanks Paul Irish!
+				log(exception);			
+			}
+		};
+		
 		try {
 			
 			initialize();
@@ -67,13 +83,7 @@
 		
 	}
 	
-	/**
-	 *	@description
-	 *		Driver for the Template class. Always put this after your class definition!
-	 *		This sets a custom event listener on the document.
-	 */
-	$(document).on('ready', function (event) {
-		
+	function onReady (event) {
 		try {
 				
 			if (!module.controller) {
@@ -87,7 +97,12 @@
 			// thanks Paul Irish!
 			log(exception);			
 		}
-			
-	});
+	}
+	/**
+	 *	@description
+	 *		Driver for the Template class. Always put this after your class definition!
+	 *		This sets a custom event listener on the document.
+	 */
+	$(document).on('ready', onReady);
 		
 }(jQuery, window.EXTEND = window.EXTEND || {}, Mustache));
