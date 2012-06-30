@@ -52,6 +52,7 @@
 			data = {};
 			template = $('#mustache-item').html(); // keep your HTML and JavaScript separate! Completely!
 			module.item.update();
+			$("#todo-list").sortable();
 			
 		};
 		

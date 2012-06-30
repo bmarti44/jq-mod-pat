@@ -8,30 +8,21 @@
 (function() {
 	'use strict';
 	
-	if (typeof(Object.method) === 'undefined') {
-		// the object method, slight twist from Douglas Crockford
-		Object.prototype.method = function (name, func) {
-		    this.prototype[name] = func;
-		    return this;
-		};
-		
-	}
-	
 	if (typeof(String.isNumeric) === 'undefined') { // if .isNumeric is not prototyped into String
 		
-		String.method('isNumeric', function() {
+		String.prototype.isNumeric = function() {
 			return (!isNaN(parseFloat(this)) && isFinite(this));
-		});
+		};
 		
 	}
 
 	if (typeof(Array.remove) === 'undefined') {
 		// Array Remove - By John Resig (MIT Licensed)
-		Array.method('remove', function(from, to) {
+		Array.prototype.remove = function(from, to) {
 			var rest = this.slice((to || from) + 1 || this.length);
 			this.length = from < 0 ? this.length + from : from;
 			return this.push.apply(this, rest);
-		});
+		};
 		
 	}
 

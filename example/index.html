@@ -3,8 +3,9 @@
 	<head>
 		<title>Example of this module pattern</title>
 		<link href="todos.css" rel="stylesheet">
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
 		<script type="text/javascript" src="jstorage.js"></script>
+		<script type="text/javascript" src="jquery-ui-1.8.21.custom.min.js"></script>
 		<script type="text/javascript" src="mustache.js"></script>
 	</head>
 	<body>
@@ -42,7 +43,7 @@
 		</div>
 		<script id="mustache-item" type="text/mustache">
 			{{#items}}
-			<li {{#done}}class="done"{{/done}}>
+			<li class="ui-state-default {{#done}}done{{/done}}">
 				<div class="view">
 			      <input class="toggle" type="checkbox" {{#done}}checked="checked"{{/done}}/>
 			      <label>{{title}}</label>
