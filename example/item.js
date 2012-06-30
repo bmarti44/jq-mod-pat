@@ -248,6 +248,31 @@
 			module.stats.update();
 		};
 		
+		module.item.edit = function (event) {
+			var index;
+			
+			index = $('#todo-list .view').index(event.target);
+			
+			$(event.target).hide();
+			$('#todo-list .edit:eq(' + index + ')').show();
+			
+		};
+		
+		module.item.save = function (event) {
+			var todos,
+				index;
+			
+			if (event.keyCode === 13) {
+				todos = $.jStorage.get('todos', {});
+				index = $('#todo-list .edit').index(event.target);
+				
+				todos.items[index].title = $(event.target).val();
+				module.item.update();
+				module.stats.update();
+			}
+			
+		};
+		
 		try {
 			
 			initialize();
@@ -276,6 +301,8 @@
 			$('#todo-list').on('click', '.destroy', module.item.remove);
 			$('#toggle-all').on('click', module.item.toggleAll);
 			$('#todo-list').on('click', '.toggle', module.item.toggle);
+			$('#todo-list').on('dblclick', '.view', module.item.edit);
+			$('#todo-list').on('keypress', '.edit', module.item.save);
 			
 		} catch (exception) {
 			// don't use console.log()! This will break browser's that don't have console.
