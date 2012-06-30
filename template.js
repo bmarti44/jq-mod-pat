@@ -119,8 +119,7 @@
 	 *		Driver for the Template class. Always put this after your class definition!
 	 *		This sets a custom event listener on the document.
 	 */
-	$(document).on('compile', function (event) {
-		
+	function onCompile (event) {
 		try {
 				
 			if (!module.template) {
@@ -134,7 +133,8 @@
 			// thanks Paul Irish!
 			log(exception);			
 		}
-			
-	});
+	}
+	
+	$(document).on('compile', onCompile);
 		
 }(jQuery, window.EXTEND = window.EXTEND || {}, Mustache));
