@@ -52,7 +52,9 @@
 			data = {};
 			template = $('#mustache-item').html(); // keep your HTML and JavaScript separate! Completely!
 			module.item.update();
-			$("#todo-list").sortable();
+			$("#todo-list").sortable({
+				'update': module.item.reorder
+			});
 			
 		};
 		
@@ -282,6 +284,30 @@
 				module.stats.update();
 			}
 			
+		};
+		
+		module.item.reorder = function (event, ui) {
+			var todos,
+				title,
+				done;
+			
+			todos = $.jStorage.get('todos', {});
+			
+			$('#todo-list li').each(function (index, element) {
+				title = $(element).find('label').html();
+				done = $(element).find('.toggle').is(':checked');
+				
+				todos.items[index] = {
+					'title': title,
+					'done': done
+				};
+			});
+			
+			$.jStorage.set('todos', todos);
+				
+			module.item.update();
+			module.stats.update();
+				
 		};
 		
 		try {
