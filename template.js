@@ -54,7 +54,7 @@
 		};
 		
 		// define the template namespace
-		module.template = {};
+		module.template = module.template || {};
 		
 		/**
 		 *	@description

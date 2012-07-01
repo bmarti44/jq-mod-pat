@@ -60,7 +60,7 @@
 		};
 		
 		// define the stats namespace
-		module.stats = {};
+		module.stats = module.stats || {};
 		
 		/**
 		 *	@description

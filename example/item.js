@@ -63,7 +63,7 @@
 		};
 		
 		// define the item namespace
-		module.item = {};
+		module.item = module.item || {};
 		
 		/**
 		 *	@description
