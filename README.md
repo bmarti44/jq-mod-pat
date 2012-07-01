@@ -1,4 +1,4 @@
-jQuery Custom Events + Module Pattern + Mustache
+Module Pattern with Inheritance
 ================================================
 * Brian Martin
 * https://twitter.com/bmarti44
@@ -7,12 +7,13 @@ jQuery Custom Events + Module Pattern + Mustache
 
 What is it?
 -----------
-Alright so what does this really long heading even mean?
+So what does Module Pattern with Inheritance even mean?
 On a recent project for Sports Illustrated we were looking for a way to
 handle a lot of moving parts in our JavaScript application. Different solutions came to mind
 such as BackBone.js and Angular.js but those solutions ended up not being flexible enough for what we needed.
 With this solution we were able to tap into jQuery's custom event system to control the flow of the program and execute
-state changes and actions across all classes.
+state changes and actions across all classes. Combining this with Douglas Crockford's Module Pattern
+and templating (Mustache.js) we've been able to create some very maintainable code.
 
 template.js
 ----------
