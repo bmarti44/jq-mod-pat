@@ -95,6 +95,10 @@ body {
 	background: url(destroy.png) no-repeat;
 }
 
+#todo-list .toggle {
+	cursor: pointer;
+}
+
 #todo-list li:hover .destroy {
   	display: block;
 }

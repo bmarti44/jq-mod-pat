@@ -186,11 +186,12 @@
 				i;
 					
 			todos = $.jStorage.get('todos', {});
-							
+									
 			for (i = 0; i < todos.items.length; i += 1) {
 				
 				if (todos.items[i].done === true) {
 					todos.items.remove(i, i);
+					i -= 1;
 				}
 				
 			}
